@@ -1,4 +1,6 @@
 # simple visual test
+import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 import pandas as pd
 
 # template to load time series
@@ -17,3 +19,10 @@ df['utc_datetime'] = pd.to_datetime(df['utc_string'],
                                     format=format_datetime_string)
 print(df)
 print(df.dtypes)
+
+# visual inspection
+fig, ax = plt.subplots(nrows=1, ncols=1)
+ax.plot(df['utc_datetime'], df['voltaje'], 'r-', lw=1)
+timedate_format = mdates.DateFormatter('%H:%M')
+ax.xaxis.set_major_formatter(timedate_format)
+plt.show()
