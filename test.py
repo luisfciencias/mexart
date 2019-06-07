@@ -2,6 +2,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import pandas as pd
+plt.rcParams['mathtext.fontset'] = 'cm'
 
 # template to load time series
 column_names = ['utc_string', 'voltaje']
@@ -23,6 +24,9 @@ print(df.dtypes)
 # visual inspection
 fig, ax = plt.subplots(nrows=1, ncols=1)
 ax.plot(df['utc_datetime'], df['voltaje'], 'r-', lw=1)
+ax.set_xlabel('UTC')
+ax.set_ylabel('$V(t)$')
+ax.set_title('2019-01-24 - L1')
 timedate_format = mdates.DateFormatter('%H:%M')
 ax.xaxis.set_major_formatter(timedate_format)
 plt.savefig('output.png', dpi=128)
